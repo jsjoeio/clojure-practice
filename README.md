@@ -2,9 +2,13 @@
 
 A bunch of Clojure exercises for me to practice writing Clojure.
 
+*Note: this project uses [hygen](http://www.hygen.io/) to scaffold new exercises. To create a new exercise, run `npx hygen file new <name>`*
+
+
 ## Usage
 
 FIXME
+
 
 ## License
 
