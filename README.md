@@ -1,6 +1,6 @@
 # clojure-practice
 
-A Clojure library designed to ... well, that part is up to you.
+A bunch of Clojure exercises for me to practice writing Clojure.
 
 ## Usage
 
