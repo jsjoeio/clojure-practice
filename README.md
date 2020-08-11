@@ -4,6 +4,14 @@ A bunch of Clojure exercises for me to practice writing Clojure.
 
 *Note: this project uses [hygen](http://www.hygen.io/) to scaffold new exercises. To create a new exercise, run `npx hygen file new <name>`*
 
+To run a single test suite, run:
+```sh
+lein test :only clojure-practice.<namespace>-test
+
+# example for the functions test
+lein test :only clojure-practice.functions-test
+```
+
 
 ## Usage
 
