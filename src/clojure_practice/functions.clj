@@ -40,7 +40,6 @@
   (str greeting ", " name "!"))
 
 ;; `def` functions
-
 ; note to self: this is for defining a global variable...it's not special to functions, but can be used for them.
 
 ; 1.
