@@ -58,3 +58,31 @@
   (fn
     [n]
     (/ n 1)))
+
+; Brave Clojure
+;; Write a function that takes a number and adds 100 to it.
+
+(defn add-one-hundred
+  "adds one hundred to n"
+  [n]
+  (+ n 100))
+
+; Brave Clojure
+;; Write a function dec-maker that works exactly like inc-maker but with subtraction.
+
+(defn dec-maker
+  "returns a function which decrements n"
+  [n]
+  (fn [x] (- x n)))
+
+((dec-maker 9) 10)
+
+; Brave Clojure
+;; Write a function mapset that works like map except the return value is a set.
+
+(defn mapset
+  "maps over but returns a set instead of a map"
+  [fun sequence]
+  (set (map fun sequence)))
+
+(mapset inc [1 1 2])
