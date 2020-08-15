@@ -86,3 +86,5 @@
   (set (map fun sequence)))
 
 (mapset inc [1 1 2])
+
+; annonymous function with #
