@@ -30,4 +30,7 @@
 ; apply
 ; partial
 ; complement
+; comp
+; memoize
+; update-in
 

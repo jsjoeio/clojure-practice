@@ -37,3 +37,7 @@
 (deftest mapset-test
   (testing "returns a dec maker"
     (is (= #{3 2} (mapset inc [1 1 2])))))
+
+(deftest get-caps-test
+  (testing "basic test"
+    (is (= "HLOWRD" (get-caps "HeLlO, WoRlD!")))))

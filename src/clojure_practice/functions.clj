@@ -88,3 +88,29 @@
 (mapset inc [1 1 2])
 
 ; annonymous function with #
+; private functions using defn- (the - makes it private)
+
+; 4Clojure Problem - Get the Caps
+; Write a function which takes a string and returns a new string containing only the capital letters.
+;; Notes
+; I'm thinking I could solve this with filter and a regex ?
+; or maybe simpler using a string replace
+
+(defn get-caps
+  "Returns a new string containing only the capital letters."
+  [s]
+  (clojure.string/replace s #"[^A-Z]+" ""))
+
+; 4Clojure Problem - Paindrome Detector
+; Write a function which returns true if the given sequence is a palindrome.
+; since I'm working with different data types (str, vector) I think
+; I need to split it into a seq
+
+(defn is-panlindrome
+  "Checks if the sequence is a palindrome"
+  [x]
+  (= (seq x) (reverse x)))
+
+; (apply str (reverse [:foo :bar :foo]))
+
+(= (seq [:foo :bar :foo]) (reverse [:foo :bar :foo]))
