@@ -144,3 +144,19 @@ result))
 (find-it '(4 5 6 7) 2)
 (first '(6))
 (get(into '(4 5 6 7) [])
+
+; loop over sequence
+; count total
+
+(reduce (fn [item current] (if item (+ 1 current) 0)) 0 [1 2 3 3])
+
+(fn [col] (reduce (fn [item current] (if item (+ 1 current) 0)) 0 col))
+
+
+((fn [x] (if x 1 0)) 5)
+
+(defn joe-count
+  [collection]
+  (reduce (fn [current item] (if item (+ 1 current) 0)) 0 collection))
+
+(joe-count [1 2])
