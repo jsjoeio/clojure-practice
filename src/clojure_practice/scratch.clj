@@ -137,31 +137,30 @@ result))
 ; if index of matches 0
 ; return element
 
-(.indexOf [2 1] 2)
+; (.indexOf [2 1] 2)
 
-(defn find-it [collection x] (first (keep-indexed (fn [index item] (if (= index x) item nil)) collection)))
+; (defn find-it [collection x] (first (keep-indexed (fn [index item] (if (= index x) item nil)) collection)))
 
-(find-it '(4 5 6 7) 2)
-(first '(6))
-(get(into '(4 5 6 7) [])
+; (find-it '(4 5 6 7) 2)
+; (first '(6))
 
 ; loop over sequence
 ; count total
 
-(reduce (fn [item current] (if item (+ 1 current) 0)) 0 [1 2 3 3])
+; (reduce (fn [item current] (if item (+ 1 current) 0)) 0 [1 2 3 3])
 
-(fn [col] (reduce (fn [item current] (if item (+ 1 current) 0)) 0 col))
+; (fn [col] (reduce (fn [item current] (if item (+ 1 current) 0)) 0 col))
 
 
-((fn [x] (if x 1 0)) 5)
+; ((fn [x] (if x 1 0)) 5)
 
-(defn joe-count
-  [collection]
-  (reduce (fn [current item] (if item (+ 1 current) 0)) 0 collection))
+; (defn joe-count
+;   [collection]
+;   (reduce (fn [current item] (if item (+ 1 current) 0)) 0 collection))
 
-(joe-count [1 2])
+; (joe-count [1 2])
 
-(reduce conj '() [1 2 3 4])
+; (reduce conj '() [1 2 3 4])
 
 ; base case
 
@@ -184,3 +183,30 @@ result))
 (def fib-seq-cat
   (lazy-cat [1 2] (map + (rest fib-seq-cat) fib-seq-cat)))
 (take 4 fib-seq-cat)
+
+; working with multiple arguments
+; use &args
+; what I need to do is take the first argument and compare it to the next
+;; and keep track of the largest number
+
+(defn get-greater-num
+  "returns the greater number of the two"
+  [x y]
+  (cond
+    (< x y) y
+    (> x y) x))
+
+(get-greater-num 2 3)
+(get-greater-num 3 2)
+
+
+
+; (defn get-max
+;   "A function which Write a function which takes a variable number of parameters and returns the maximum value"
+;   [& args]
+;   (apply first-two-sum args)
+;   )
+
+; could I write some type of reduce function
+
+; (get-max 1 8 3 4)

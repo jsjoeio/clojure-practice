@@ -2,9 +2,11 @@
   (:require [clojure.test :refer :all]
             [clojure-practice.scratch :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 1 1))))
+(deftes get-greater-sum-test
+  (testing "should return x if x is greater"
+    (is (= 3 (get-greater-num 2 3)))))
 
-
+(deftes get-greater-sum-2-test
+  (testing "should return y if y is greater"
+    (is (= 3 (get-greater-num 3 2)))))
 
