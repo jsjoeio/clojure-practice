@@ -160,3 +160,27 @@ result))
   (reduce (fn [current item] (if item (+ 1 current) 0)) 0 collection))
 
 (joe-count [1 2])
+
+(reduce conj '() [1 2 3 4])
+
+; base case
+
+; (defn fib
+;   [n]
+;   (if (= 0 n) 0)
+;   (if (= 1 n) 1)
+;   (recur (+ (- n 1) (- n 2))))
+
+
+(defn fib
+  [n]
+  (cond
+    (= n 0) 0
+    (= n 1) 1
+     :else (+ (fib (- n 1)) (fib (- n 2)))))
+
+(fib 3)
+
+(def fib-seq-cat
+  (lazy-cat [1 2] (map + (rest fib-seq-cat) fib-seq-cat)))
+(take 4 fib-seq-cat)
