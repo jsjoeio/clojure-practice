@@ -14,57 +14,57 @@
 ; giving you (5 4 3 2 1)
 ((fn foo [x] (when (> x 0) (conj (foo (dec x)) x))) 5)
 
-(defn test [n]
-  (let [stop n]
-    (loop [i 0
-           acc []]
-      (if (= i stop)
-        acc
-        (recur (inc i) (conj acc i))))))
+; (defn test [n]
+;   (let [stop n]
+;     (loop [i 0
+;            acc []]
+;       (if (= i stop)
+;         acc
+;         (recur (inc i) (conj acc i))))))
 
-(test 5)
+; (test 5)
 
-(defn joe
-  "do the thing"
-  [n]
-  (loop [stop n
-         acc []]
-    (if (= 0 stop)
-      acc
-      (recur (dec stop) (conj acc stop)))))
+; (defn joe
+;   "do the thing"
+;   [n]
+;   (loop [stop n
+;          acc []]
+;     (if (= 0 stop)
+;       acc
+;       (recur (dec stop) (conj acc stop)))))
 
-(joe 5)
+; (joe 5)
 
-((fn [n]   (loop [stop n
-                  acc []]
-             (if (= 0 stop)
-               acc
-               (recur (dec stop) (conj acc stop))))) 5)
+; ((fn [n]   (loop [stop n
+;                   acc []]
+;              (if (= 0 stop)
+;                acc
+;                (recur (dec stop) (conj acc stop))))) 5)
 
-(= ((fn [n]   (loop [stop n
-                     acc []]
-                (if (= 0 stop)
-                  acc
-                  (recur (dec stop) (conj acc stop))))) 5 ((fn foo [x] (when (> x 0) (conj (foo (dec x)) x))) 5))
+; (= ((fn [n]   (loop [stop n
+;                      acc []]
+;                 (if (= 0 stop)
+;                   acc
+;                   (recur (dec stop) (conj acc stop))))) 5 ((fn foo [x] (when (> x 0) (conj (foo (dec x)) x))) 5))
 
-(= '(1 2 3) [1 2 3])
+; (= '(1 2 3) [1 2 3])
 
-(-> [2 5 4 1 3 6] (reverse) (rest) (sort) (last) )
-(apply max [1 2 3])
+; (-> [2 5 4 1 3 6] (reverse) (rest) (sort) (last) )
+; (apply max [1 2 3])
 
-(loop [x 5
-  result []]
-(if (> x 0)
-(recur (dec x) (conj result (+ 2 x)))
-result))
+; (loop [x 5
+;   result []]
+; (if (> x 0)
+; (recur (dec x) (conj result (+ 2 x)))
+; result))
 
-; [ 7 6 5 4 3]
+; ; [ 7 6 5 4 3]
 
-((fn foo [x] (when (> x 2) (conj (foo (dec x)) x))) 7)
+; ((fn foo [x] (when (> x 2) (conj (foo (dec x)) x))) 7)
 
-(conj [] (+ 2 2))
+; (conj [] (+ 2 2))
 
-(reduce + [5 4 1])
+; (reduce + [5 4 1])
 
 ; a nil key
 ; returns true if map has key and value is nil
@@ -111,22 +111,22 @@ result))
 ; create key from value
 ; and set value to default
 
-((fn [_hash-map key val ] (assoc _hash-map key val)) {:b 0} :a 0)
+; ((fn [_hash-map key val ] (assoc _hash-map key val)) {:b 0} :a 0)
 
-((fn [x col] (reduce-kv (fn [m _ v] (assoc m v x)) {} col)) 0 [:a :b :c])
-(fn [x col] (reduce-kv (fn [m _ v] (assoc m v x)) {} col))
+; ((fn [x col] (reduce-kv (fn [m _ v] (assoc m v x)) {} col)) 0 [:a :b :c])
+; (fn [x col] (reduce-kv (fn [m _ v] (assoc m v x)) {} col))
 
-(let [results {}]
-(for [x [:a :b]]
-  (assoc results x 0)))
+; (let [results {}]
+; (for [x [:a :b]]
+;   (assoc results x 0)))
 
-(apply hash-map [:a 0 :b])
+; (apply hash-map [:a 0 :b])
 
 
 
-(fn test
-  [_map]
-  (let [results {}]))
+; (fn test
+;   [_map]
+;   (let [results {}]))
 
 ; write a function that takes in a hash-map and a key and a default value
 
