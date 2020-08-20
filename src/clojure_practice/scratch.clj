@@ -208,3 +208,38 @@
 ; could I write some type of reduce function
 
 ; (get-max 1 8 3 4)
+
+
+; implementing a range
+; start from 1, increment and
+
+
+(defn joe-range
+  "make a range"
+  [start end]
+  (let [the-list '()]
+    (conj the-list start)
+    (if (= start end) the-list (joe-range (inc start) end))))
+
+(joe-range 1 3)
+
+(if (= 1 1) '(1 2) false)
+
+(reduce conj '() [1 2 3])
+
+; the function should take in two arguments
+
+; how does the function work for reduce?
+; it takes the first two arguments
+
+(defn try-two
+  [x y]
+  (if (= x y) y (list x (inc x))))
+
+(reduce try-two [0 3])
+
+((fn [start stop] (take (- stop start) (iterate inc start))) 5 8)
+(fn [start stop] (take (- stop start) (iterate inc start)))
+(take 3 (iterate inc 5))
+
+
