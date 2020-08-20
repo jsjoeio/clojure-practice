@@ -7,6 +7,9 @@
 ; futures
 ; delays
 ; promises
+; dynamic vars
+; atoms
+;; create an atom with the initial value 0, use swap! to increment it a couple of times, then dereference it
 
 
 
