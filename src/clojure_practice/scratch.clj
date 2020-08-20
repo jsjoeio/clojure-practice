@@ -75,7 +75,6 @@
 ; first check if it has the key
 
 
-
 (contains? {:a 1 :b 2} :z)
 (get {:a 1 :b 2} :z)
 
@@ -90,20 +89,20 @@
 (key-is-nil :a {:a 1 :b 2})
 
 (for [x (range 40)
-            :when (= 1 (rem x 4))]
-        x)
+      :when (= 1 (rem x 4))]
+  x)
 
-        (for [x (iterate #(+ 4 %) 0)
-        :let [z (inc x)]
-        :while (< z 40)]
-    z)
+(for [x (iterate #(+ 4 %) 0)
+      :let [z (inc x)]
+      :while (< z 40)]
+  z)
 
-    (for [[x y] (partition 2 (range 20))]
-      (+ x y))
+(for [[x y] (partition 2 (range 20))]
+  (+ x y))
     ; [1 5 9 13]
 
-    (for [[x] (partition 4 (range -4 39))]
-      (inc (+ x 4)))
+(for [[x] (partition 4 (range -4 39))]
+  (inc (+ x 4)))
 
 (assoc {} 0 [:a :b])
 
@@ -176,7 +175,7 @@
   (cond
     (= n 0) 0
     (= n 1) 1
-     :else (+ (fib (- n 1)) (fib (- n 2)))))
+    :else (+ (fib (- n 1)) (fib (- n 2)))))
 
 (fib 3)
 
@@ -196,9 +195,8 @@
     (< x y) y
     (> x y) x))
 
-(get-greater-num 2 3)
-(get-greater-num 3 2)
-
+; same as above but less code
+((fn [x y] (if (< x y) y x)) 3 2)
 
 
 ; (defn get-max
