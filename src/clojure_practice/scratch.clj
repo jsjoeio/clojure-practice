@@ -75,7 +75,6 @@
 ; first check if it has the key
 
 
-
 (contains? {:a 1 :b 2} :z)
 (get {:a 1 :b 2} :z)
 
@@ -90,20 +89,20 @@
 (key-is-nil :a {:a 1 :b 2})
 
 (for [x (range 40)
-            :when (= 1 (rem x 4))]
-        x)
+      :when (= 1 (rem x 4))]
+  x)
 
-        (for [x (iterate #(+ 4 %) 0)
-        :let [z (inc x)]
-        :while (< z 40)]
-    z)
+(for [x (iterate #(+ 4 %) 0)
+      :let [z (inc x)]
+      :while (< z 40)]
+  z)
 
-    (for [[x y] (partition 2 (range 20))]
-      (+ x y))
+(for [[x y] (partition 2 (range 20))]
+  (+ x y))
     ; [1 5 9 13]
 
-    (for [[x] (partition 4 (range -4 39))]
-      (inc (+ x 4)))
+(for [[x] (partition 4 (range -4 39))]
+  (inc (+ x 4)))
 
 (assoc {} 0 [:a :b])
 
@@ -176,7 +175,7 @@
   (cond
     (= n 0) 0
     (= n 1) 1
-     :else (+ (fib (- n 1)) (fib (- n 2)))))
+    :else (+ (fib (- n 1)) (fib (- n 2)))))
 
 (fib 3)
 
@@ -196,9 +195,8 @@
     (< x y) y
     (> x y) x))
 
-(get-greater-num 2 3)
-(get-greater-num 3 2)
-
+; same as above but less code
+((fn [x y] (if (< x y) y x)) 3 2)
 
 
 ; (defn get-max
@@ -210,3 +208,170 @@
 ; could I write some type of reduce function
 
 ; (get-max 1 8 3 4)
+
+
+; implementing a range
+; start from 1, increment and
+
+
+(defn joe-range
+  "make a range"
+  [start end]
+  (let [the-list '()]
+    (conj the-list start)
+    (if (= start end) the-list (joe-range (inc start) end))))
+
+(joe-range 1 3)
+
+(if (= 1 1) '(1 2) false)
+
+(reduce conj '() [1 2 3])
+
+; the function should take in two arguments
+
+; how does the function work for reduce?
+; it takes the first two arguments
+
+(defn try-two
+  [x y]
+  (if (= x y) y (list x (inc x))))
+
+(reduce try-two [0 3])
+
+((fn [start stop] (take (- stop start) (iterate inc start))) 5 8)
+(fn [start stop] (take (- stop start) (iterate inc start)))
+(take 3 (iterate inc 5))
+
+
+
+; 4Clojure - #41
+; drop every nth item
+
+
+(defn drop-only-nth
+  "Removes an item from a collection at n"
+  [collection n]
+  (vec
+   (concat
+    (subvec collection 0 (dec n))
+    (subvec collection n))))
+
+
+; I learned about this from this S/O
+; https://stackoverflow.com/a/24553906/3015595
+; What's happening is we're using the keep-index function
+; it takes a function and a collection
+; the function is given two arguments: the index and the item itself
+; here we give it an annonymous function and check if the index is not equal to n
+; if it's not, we return it
+; the end result is a collection
+
+
+(defn drop-every-nth
+  "Drops every nth item from collection"
+  [coll n]
+  (keep-indexed #(if (not= (mod (inc %1) n) 0) %2) coll))
+
+(drop-every-nth [1 2 3 4 5 6 7 8] 3)
+(= '(1 2) [1 2])
+
+(defn drop-nth
+  [coll n]
+  (concat
+   (take n coll)
+   (drop (inc n) coll)))
+
+(drop-nth [1 2 3 4] 1)
+
+; okay i completely misunderstood the problem.
+; it wants me to remove every nth element
+; what the means is to loop through
+
+(partition 4 [1 2 3 4 5])
+
+; [1 2 3 4 5 6 7 8] 3) [1 2 4 5 7 8]
+; I need to drop every third
+; what if...
+; I split a collection by n
+; (1 2 3) (4 5 6) (7 8)
+; then if length is equal to n
+; i drop the last one
+; then join them all back to gether
+; example
+; then drop
+
+; but I also feel like keep-indexed could work
+
+; but we need to see if the index is divisible by n
+; [1 2 3 4 5 6 7 8] 3) [1 2 4 5 7 8]
+; 3, index is 2
+; 6, index is 5
+; what we need to do is inc n
+; then say is 3 / 3 = 0?
+; if it is, remove that item
+
+
+(def my-vector [1 2 3 4 5])
+
+; a is the first item
+; b is the second
+; c is the remaining three (1 2 3)
+; d is all of them
+(let [[a b & c :as d] my-vector]
+  [a b c d])
+
+
+; the goal: [1 2 [3 4 5] [1 2 3 4 5]]
+
+
+(defn comparison-symbol
+  "returns keyword based on args"
+  [op x y]
+  (cond
+    (= x y) :eq
+    (> x y) :gt
+    (< x y) :lt))
+
+(compare "pear" "l")
+
+; okay I have a function that comes in
+; i need to take in that function and pass in
+; x and y
+;
+((fn [x y] (< (count x) (count y))) "pear" "plum")
+
+(= 5 5)
+
+; is 5 less than 1? false
+(< 5 1)
+
+; is 0 greater than 2? false
+(> 0 2)
+
+((fn [x y] (< (mod x 5) (mod y 5))) 21 3)
+((fn [x y] (< (count x) (count y))) "pear" "plum")
+
+(length)
+
+; col length * 2 -1
+
+(defn joe-interpose
+  [x col]
+  (let [length (count col)
+        total (dec (* 2 length))
+        vec-to-interpose (take length (repeat x))]
+    (take total (interleave col vec-to-interpose))))
+
+(joe-interpose 2 [1 2 3])
+
+(take 5 (interleave [1 2 3] '(0 0 0)))
+
+(take 3 (repeat 0))
+
+; I am proud of this one!
+; finally getting let bindings down
+(fn [x col]
+  (let [length (count col)
+        total (dec (* 2 length))
+        vec-to-interpose (take length (repeat x))]
+    (take total (interleave col vec-to-interpose))))

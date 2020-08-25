@@ -41,3 +41,15 @@
 (deftest get-caps-test
   (testing "basic test"
     (is (= "HLOWRD" (get-caps "HeLlO, WoRlD!")))))
+
+(deftest half-truth-test
+  (testing "half truth func"
+    (is (= false (half-truth false false)))))
+
+(deftest half-truth-1-test
+  (testing "half truth func 1"
+    (is (= true (half-truth true false)))))
+
+(deftest half-truth-2-test
+  (testing "half truth func 2"
+    (is (= false (half-truth true)))))

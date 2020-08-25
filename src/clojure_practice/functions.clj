@@ -114,3 +114,75 @@
 ; (apply str (reverse [:foo :bar :foo]))
 
 (= (seq [:foo :bar :foo]) (reverse [:foo :bar :foo]))
+
+
+; Explain the iterate function
+; The iterate function creates an infinite sequence.
+; it's lazy
+; seems like it's often used with take
+; the function sig is iterate f x
+; the f is applied to x
+
+; Here, I say, "starting with 1, increment, but only take 6"
+; the result is a seq containing (1 2 3 4 5 6)
+
+
+(take 6 (iterate inc 1))
+
+
+; This is #45 from 4Clojure
+; (= __ (take 5 (iterate #(+ 3 %) 1)))
+
+
+(take 5 (iterate #(+ 3 %) 1))
+
+; we pass an annonymous function to iterate.
+; all it does is add 3 to the number passed in
+; the output should be
+; (1 4 7 10 13)
+
+; to re implement iterate
+; we need to write a function which takes
+; a function and then a number
+
+(defn joe-iterate
+  [f x]
+  (repeatedly #(f x)))
+
+(take 2 (iterate inc 1))
+(take 2 (joe-iterate inc 1))
+(take 5 (repeatedly #(rand-int 11)))
+; I don't know how to make it infinite lazy
+
+(take 2 (repeatedly #(inc 1)))
+
+(take 10 (repeatedly inc 0))
+
+; "Leeeeeerrroyyy")) "Leroy"
+
+(contains? [1 1 1] 0)
+
+(contains? #{4 5 6} 4)
+
+((fn [& args] (some true? (into () args))) false true)
+
+; Write a function which takes a variable number of booleans. Your function should return true if some of the parameters are true, but not all of the parameters are true. Otherwise your function should return false
+
+;; I messed up here. I didn't realize it should return false
+; if they are all true
+; I wonder if I should use
+(defn half-truth
+  "takes in variable num of booleans and tells if some are truthy"
+  [& args]
+  (if (every? true? (into () args)) false
+      (true? (some true? (into () args)))))
+
+(half-truth true false)
+
+(every? distinct? [false true])
+
+(distinct? true)
+
+; talk yourself through it
+; well they can be true or false
+; we want to know if there is some trueth in there but not all
