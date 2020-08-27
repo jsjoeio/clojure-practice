@@ -375,3 +375,67 @@
         total (dec (* 2 length))
         vec-to-interpose (take length (repeat x))]
     (take total (interleave col vec-to-interpose))))
+
+(dedupe [1 2 1 3 1 2 4])
+
+(doc dedupe)
+
+
+; into camel case
+; this hello-world to this helloWorld
+
+; 1. split the strign
+; 2. loop through
+; if the letter = - then upper case the next letter
+; join them back together
+
+; I know how to get the index and the item
+; but I don't know how to have a value that is in the greater scope
+
+;; Tools I can use
+; (clojure.string/upper-case string)
+; (map-indexed (fn [idx letter] [idx letter] collection))
+
+
+(map (seq "hello-world"))
+
+(if (= "-" "-") (clojure.string/upper-case "h") false)
+
+(defn camel-case
+  "Takes a lower-case hyphenated string and returns it in camelCase"
+  [s]
+  (let [to-caps []]
+    (map-indexed (fn [idx letter] (if (= idx 0) (conj to-caps letter))) s)
+    to-caps))
+
+(camel-case "hello-world")
+
+(map-indexed (fn [idx letter] (if (= letter \-) idx letter)) "hello-world")
+
+; I want to map over "hello"
+; If the index = 0, i want to add that letter to caps
+; At the end, I want to return caps
+; Expected [\h]
+(let [caps []] (map-indexed (fn [idx letter] (if (= idx 0) (conj caps letter))) "hello") caps)
+
+(= \h \h)
+
+; into camelCase
+
+(defn plz-work
+  [s]
+  (clojure.string/join (map-indexed (fn [idx word] (if (= idx 0) word (clojure.string/capitalize word))) (clojure.string/split s #"\-"))))
+
+(plz-work "hello-world")
+
+; what the fuck
+; i am over thinking this
+; split at hyphen, capitalize word
+
+
+(clojure.string/capitalize "hello")
+; FINALLY!!!
+(fn [s])
+(clojure.string/join (map-indexed (fn [idx word] (if (= idx 0) word (clojure.string/capitalize word))) (clojure.string/split "hello-world" #"\-")))
+
+(clojure.string/join ["hello" "hello"])
