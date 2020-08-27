@@ -439,3 +439,6 @@
 (clojure.string/join (map-indexed (fn [idx word] (if (= idx 0) word (clojure.string/capitalize word))) (clojure.string/split "hello-world" #"\-")))
 
 (clojure.string/join ["hello" "hello"])
+
+(= (if (= 0 0) true) (zero? 0))
+(zero? 0)
