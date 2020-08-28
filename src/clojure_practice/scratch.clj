@@ -428,7 +428,6 @@
 
 (plz-work "hello-world")
 
-; what the fuck
 ; i am over thinking this
 ; split at hyphen, capitalize word
 
@@ -442,3 +441,7 @@
 
 (= (if (= 0 0) true) (zero? 0))
 (zero? 0)
+
+
+; 8 *9
+(map #(Character/digit % 10) (str 942))
