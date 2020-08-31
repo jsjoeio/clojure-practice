@@ -6,7 +6,7 @@
   (println x "Hello, World!"))
 
 ; core sequence functions
-; first
+; first DONE
 ; rest
 ; cons
 ; map
@@ -56,4 +56,29 @@
 ;; be able to exp
 
 
+; Exploring first
 
+; Grab the first element in a vector
+(first [1 2 3])
+
+; Grab the first element in a list
+(first '(1 2 3))
+
+; Grab the first element in a hash map
+(first #{:hi 1 :bye 2})
+
+; Exploring rest
+; Grabs everything but the first
+
+(rest [1 2 3])
+
+(rest '(1 2 3))
+
+(defn headtail
+  "Splits a function into the head and the tail"
+  [col]
+  (hash-map :head (first col), :tail (vec (rest col))))
+
+(headtail [1 2 3])
+
+(map (split-at 3) (range 9))

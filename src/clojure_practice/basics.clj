@@ -21,4 +21,9 @@
 ; hash-set
 (hash-set 1 1 2 4)
 
+(defn hello
+  "says hello to someone"
+  [name]
+  (str "Hello, " name))
 
+(hello "Joe")
